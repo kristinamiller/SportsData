@@ -23,25 +23,24 @@ class Players extends React.Component {
   }
 
   render() {
-    return(
-      <div>
-        <ul>This is the Players Table
-          {
-            this.state.players.map((player) => {
-              return (
-                <li key={player.player_id}>
-                  <ul>
-                    {Object.values(player).map((value, idx) => {
-                      return <li key={idx}>{value}</li>;
-                    })}
-                  </ul>
-                </li>
-              );
-            })
-          }
+    return (
+      <div className="players-table">
+        <ul className="players-ul">
+          This is the Players Table
+          {this.state.players.map(player => {
+            return (
+              <li key={player.player_id}>
+                <ul className="player-row">
+                  {Object.values(player).map((value, idx) => {
+                    return <li key={idx} className="player-item">{value}</li>;
+                  })}
+                </ul>
+              </li>
+            );
+          })}
         </ul>
       </div>
-    )
+    );
   }
 
 }
