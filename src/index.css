@@ -61,9 +61,8 @@ q:before, q:after {
 
 .players-table {
   margin: 30px;
-  padding: 0px 10px 0px 10px;
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  padding: 20px 10px 20px 10px;
+  border: 1px solid #cccccc;
   box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
 }
 
@@ -71,7 +70,7 @@ li.player-row {
   padding: 5px 0px 5px 0px;
 }
 
-li.player-row:nth-child(odd)  {
+li.player-row:nth-child(even)  {
   background: #f3f6f7;
 }
 
@@ -90,4 +89,9 @@ ul.player-row {
   width: 300px;
 }
 
+.player-row.header {
+  font-weight: bold;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 5px;
+}
 
