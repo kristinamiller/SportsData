@@ -61,18 +61,33 @@ q:before, q:after {
 
 .players-table {
   margin: 30px;
+  padding: 0px 10px 0px 10px;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+  box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
 }
 
-.player-row {
+li.player-row {
+  padding: 5px 0px 5px 0px;
+}
+
+li.player-row:nth-child(odd)  {
+  background: #f3f6f7;
+}
+
+ul.player-row {
   display: flex;
   flex-direction: row;
 }
 
-/* .player-row:first-child {
-  width: 50px;
-} */
 
 .player-item {
-  width: 200px;
+  width: 100px;
+  text-align: center;
 }
+
+.player-item.name {
+  width: 300px;
+}
+
 
