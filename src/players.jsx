@@ -1,5 +1,6 @@
 import React from 'react';
 import { players } from './api';
+import TableFilter from 'react-table-filter';
 
 class Players extends React.Component {
 
@@ -26,6 +27,11 @@ class Players extends React.Component {
     return (
       <div className="players-table">
         <div>Search</div>
+        {/* <TableFilter rows="" onFilterUpdate={this._filterUpdated}>
+          <th filterkey="name">Name</th>
+          <th filterkey="season">Season</th>
+          <th filterkey="number">Number</th>
+        </TableFilter> */}
         <ul className="players-ul">
           <li>
             <ul className="player-row header">
@@ -45,7 +51,7 @@ class Players extends React.Component {
                 Team Name
               </li>
               <li key="f" className="player-item number header">
-                Opp 
+                Opp
               </li>
               <li key="g" className="player-item name header">
                 Opp Name
@@ -54,7 +60,7 @@ class Players extends React.Component {
                 Points
               </li>
               <li key="i" className="player-item number header">
-                Assists 
+                Assists
               </li>
               <li key="j" className="player-item number header">
                 Rebounds
