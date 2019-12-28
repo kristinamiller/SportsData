@@ -25,6 +25,7 @@ class Players extends React.Component {
   render() {
     return (
       <div className="players-table">
+        <div>Search</div>
         <ul className="players-ul">
           <li>
             <ul className="player-row header">
@@ -105,9 +106,14 @@ class Players extends React.Component {
                     {player.starter}
                   </li>
                   <li key="12" className="player-item number">
-                    {
-                      player.active === 1 ? "active" : "inactive"
-                    }
+                    <select name="" id="">
+                      <option value="">
+                        {player.active === 1 ? "active" : "inactive"}
+                      </option>
+                      <option value="">
+                        {player.active === 1 ? "inactive" : "active"}
+                      </option>
+                    </select>
                   </li>
                 </ul>
               </li>
