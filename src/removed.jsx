@@ -104,3 +104,25 @@
       </div>
     );
   }
+
+
+
+          <table className="basic-table">
+          <thead>
+            <TableFilter rows={playerData} onFilterUpdate={this._filterUpdated}>
+              {tableHeaders.map((header, idx) => {
+                return (
+                  <th
+                    key={"header_" + idx}
+                    className="cell"
+                    filterkey={header}
+                    showsearch={"true"}
+                  >
+                    {header}
+                  </th>
+                );
+              })}
+            </TableFilter>
+          </thead>
+          <tbody>{tableRows}</tbody>
+        </table>
