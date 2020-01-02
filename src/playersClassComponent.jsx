@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { players } from "./api";
 // import TableFilter from "react-table-filter";
 import ReactDataGrid from "react-data-grid";
@@ -64,12 +64,15 @@ function getRows(rows, filters) {
   return selectors.getRows({ rows, filters });
 }
 
-function Players({ rows }) {
-  const [filters, setFilters] = useState({});
-  const filteredRows = getRows(rows, filters);
-  const [state, setState] = useState({ players: [] });
+class Players extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      players: []
+    };
+  }
 
-  useEffect(() => {
+  componentDidMount() {
     const getPlayers = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(players);
@@ -77,37 +80,63 @@ function Players({ rows }) {
     });
 
     getPlayers.then(playerInfo => {
-      setState({ players: playerInfo });
+      this.setState({ players: playerInfo });
     });
-  });
+  }
 
-  rows = state.players.map((player, idx) => {
-    let row = {};
-    columns.forEach((column, idx) => {
-      row[column.key] = player[column.key];
+  getPlayerKeys() {
+    const playerKeys = Object.keys(this.state.players[1]);
+    return playerKeys;
+  }
+
+  render() {
+    const [filters, setFilters] = useState({});
+    const filteredRows = getRows(rows, filters);
+    // const columns = Object.keys(this.state.players[1]).map(columnName => {
+    //   return {key: columnName, name: columnName}
+    // })
+    // const columnNames = columns.map(column => {
+    //   return column.key;
+    // })
+    const rows = this.state.players.map((player, idx) => {
+      let row = {};
+      columns.forEach((column, idx) => {
+        row[column.key] = player[column.key];
+      });
+
+      return row;
     });
 
-    return row;
-  });
+    const playerData = this.state.players;
+    const tableRows = playerData.map((player, idx) => {
+      return (
+        <tr key={"player_" + idx}>
+          {this.getPlayerKeys().map((item, idx) => {
+            return (
+              <td key={"item" + idx} className="cell">
+                {player[item]}
+              </td>
+            );
+          })}
+        </tr>
+      );
+    });
 
-
-  return (
-    <div className="players-table">
-      <ReactDataGrid
-        columns={columns}
-        rowGetter={i => rows[i]}
-        rowsCount={rows.length}
-        // onGridRowsUpdated={this.onGridRowsUpdated}
-        enableCellSelect={true}
-        toolbar={<Toolbar enableFilter={true} />}
-        onAddFilter={filter => setFilters(handleFilterChange(filter))}
-        onClearFilters={() => setFilters({})}
-        getValidFilterValues={columnKey =>
-          getValidFilterValues(rows, columnKey)
-        }
-      />
-    </div>
-  );
+    return (
+      <div className="players-table">
+        <ReactDataGrid
+          columns={columns}
+          rowGetter={i => rows[i]}
+          rowsCount={rows.length}
+          // onGridRowsUpdated={this.onGridRowsUpdated}
+          enableCellSelect={true}
+          toolbar={<Toolbar enableFilter={true} />}
+          onAddFilter={filter => setFilters(handleFilterChange(filter))}
+          onClearFilters={() => setFilters({})}
+        />
+      </div>
+    );
+  }
 }
 
 export default Players;
