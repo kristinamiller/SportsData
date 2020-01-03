@@ -42,7 +42,7 @@ const {
   SingleSelectFilter
 } = Filters;
 
-const handleFilterChange = filter => filters => {
+const handleFilterChange = filter => filters => { //don't understand syntax here
   const newFilters = { ...filters };
   if (filter.filterTerm) {
     newFilters[filter.column.key] = filter;
@@ -100,7 +100,7 @@ function Players({ rows }) {
         // onGridRowsUpdated={this.onGridRowsUpdated}
         enableCellSelect={true}
         toolbar={<Toolbar enableFilter={true} />}
-        onAddFilter={filter => setFilters(handleFilterChange(filter))}
+        onAddFilter={filter => setState(handleFilterChange(filter))}
         onClearFilters={() => setFilters({})}
         getValidFilterValues={columnKey =>
           getValidFilterValues(rows, columnKey)
